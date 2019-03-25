@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { JsonpModule } from '@angular/http';
+import { JsonpModule, HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconRegistry } from '@angular/material/icon';
 
@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello.component';
 
 import {
     MatButtonModule,
@@ -55,6 +54,13 @@ import {
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DomSanitizer } from '@angular/platform-browser';
+import { BookService } from './book.service';
+import { LoginService } from './login.service';
+import { BookDetailComponent } from './book-detail.component';
+import { BookListComponent } from './book-list.component';
+import { BookFormComponent } from './book-form.component';
+import { LoginComponent } from './login.component';
+import { routing } from './app.routing';
 
 @NgModule({
     imports: [
@@ -104,9 +110,13 @@ import { DomSanitizer } from '@angular/platform-browser';
         CovalentMessageModule,
         /** Additional **/
         NgxChartsModule,
+
+        HttpModule, //Remove when migrated to HttpClient
+        routing
     ],
-    declarations: [AppComponent, HelloComponent],
+    declarations: [AppComponent, BookDetailComponent, BookListComponent, BookFormComponent, LoginComponent],
     bootstrap: [AppComponent],
+    providers: [BookService, LoginService]
 })
 export class AppModule {
     constructor(private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
